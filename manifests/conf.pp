@@ -87,9 +87,7 @@ define network::conf (
 
   $options_hash = undef,
 
-  $ensure       = present ) {
-
-  validate_re($ensure, ['present','absent'], 'Valid values are: present, absent. WARNING: If set to absent the conf file is removed.')
+  Enum['present', 'absent'] $ensure = 'present' ) {
 
   include ::network
 
