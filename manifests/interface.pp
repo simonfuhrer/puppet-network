@@ -513,18 +513,18 @@ define network::interface (
 
   include ::network
 
-  validate_array($up)
-  validate_array($pre_up)
-  validate_array($down)
-  validate_array($pre_down)
-  validate_array($slaves)
-  validate_array($bond_slaves)
-  validate_array($bridge_ports)
-  validate_array($wpa_key_mgmt)
-  validate_array($wpa_group)
-  validate_array($wpa_pairwise)
-  validate_array($wpa_auth_alg)
-  validate_array($wpa_proto)
+  validate_legacy(Array, 'validate_array', $up)
+  validate_legacy(Array, 'validate_array', $pre_up)
+  validate_legacy(Array, 'validate_array', $down)
+  validate_legacy(Array, 'validate_array', $pre_down)
+  validate_legacy(Array, 'validate_array', $slaves)
+  validate_legacy(Array, 'validate_array', $bond_slaves)
+  validate_legacy(Array, 'validate_array', $bridge_ports)
+  validate_legacy(Array, 'validate_array', $wpa_key_mgmt)
+  validate_legacy(Array, 'validate_array', $wpa_group)
+  validate_legacy(Array, 'validate_array', $wpa_pairwise)
+  validate_legacy(Array, 'validate_array', $wpa_auth_alg)
+  validate_legacy(Array, 'validate_array', $wpa_proto)
 
   # $subchannels is only valid for zLinux/SystemZ/s390x.
   if $facts['architecture'] == 's390x' {
