@@ -528,7 +528,7 @@ define network::interface (
 
   # $subchannels is only valid for zLinux/SystemZ/s390x.
   if $facts['architecture'] == 's390x' {
-    validate_array($subchannels)
+    validate_legacy(Array, 'validate_array', $subchannels)
     validate_legacy(String, 'validate_re', $nettype,['^(qeth|lcs|ctc)$'])
 
     # Different parameters required for RHEL6 and RHEL7
@@ -540,7 +540,7 @@ define network::interface (
   }
   if $facts['os']['family'] == 'RedHat' {
     if $iprule != undef {
-      validate_array($iprule)
+      validate_legacy(Array, 'validate_array', $iprule)
     }
   }
   if $arp != undef and ! ($arp in ['yes', 'no']) {
