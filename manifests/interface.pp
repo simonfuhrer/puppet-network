@@ -278,7 +278,7 @@ define network::interface (
   $options_extra_debian             = undef,
   $options_extra_suse               = undef,
   $interface                        = $name,
-  $restart_all_nic = $facts['os']['family'] ? {
+  Boolean $restart_all_nic = $facts['os']['family'] ? {
     'RedHat' => $facts['os']['release']['major'] ? {
       '8'     => false,
       default => true,
@@ -302,7 +302,7 @@ define network::interface (
 
   ## Debian specific
   $manage_order          = '10',
-  $auto                  = true,
+  Boolean $auto          = true,
   $allow_hotplug         = undef,
   $method                = '',
   $family                = 'inet',
@@ -512,10 +512,6 @@ define network::interface (
   ) {
 
   include ::network
-
-  validate_bool($auto)
-  validate_bool($enable)
-  validate_bool($restart_all_nic)
 
   validate_array($up)
   validate_array($pre_up)
